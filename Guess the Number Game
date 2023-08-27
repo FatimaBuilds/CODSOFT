@@ -1,0 +1,48 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean playAgain = true;
+        int randomNumber, GuessedNumber;
+        int countAttempts = 0, limitAttempts = 10;
+
+        while (playAgain) {
+        Random random = new Random();
+        randomNumber = random.nextInt(100) + 1;
+        
+        System.out.print("Guss number from 1 to 100: ");
+        GuessedNumber = scanner.nextInt();
+       
+       while (GuessedNumber!= randomNumber){
+           if (GuessedNumber > randomNumber) {
+           System.out.println("Your guess is too high!");
+           }else if (GuessedNumber < randomNumber) {
+           System.out.println("Your guess is too low!");
+           }
+           GuessedNumber = scanner.nextInt();
+           countAttempts++;
+
+           
+           if(countAttempts == limitAttempts){           
+               System.out.println("You have exceeded the number of attempts.");
+              break;
+           }
+       }
+        if (GuessedNumber == randomNumber) {
+           System.out.println("Congratulations! You guessed the number in " + countAttempts + " attempts.");
+           }
+        
+       System.out.println();
+       System.out.print("play again? (y/n)");
+       String newRound = scanner.next();
+       if (!newRound.equalsIgnoreCase("y")) {
+                playAgain = false;
+            }else {
+                countAttempts = 0;
+            }
+        }
+        }
+    }
+
